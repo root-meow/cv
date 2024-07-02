@@ -16,8 +16,8 @@
 </head>
 
 <body>
-  <div data-testid="currentDay" id="clock" class="design-clock"></div>
-<script> 
+  <div data-testid="currentTimeUTC" id="clock" class="design-clock"></div>
+<script data-testid="currentDay"> 
   window.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         window.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         function nthFormatter(d) {
