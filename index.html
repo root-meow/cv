@@ -16,33 +16,37 @@
 </head>
 
 <body>
-  <div data-testid="currentTimeUTC" id="clock" class="design-clock"></div>
+  <div data-testid="currentDay" id="clock" class="design-clock"></div>
 <script> 
-function currentTime() {
-  var date = new Date(); /* creating object of Date class */
-  var hour = date.getHours();
-  var min = date.getMinutes();
-  var sec = date.getSeconds();
-  //var day = date.toISOString().split('T')[0];
-  day = date.getDay();
-  hour = updateTime(hour);
-  min = updateTime(min);
-  sec = updateTime(sec);
-  document.getElementById("clock").innerHTML = day + '<br>' + hour + " : " + min + " : " + sec; /* adding time to the div */
-    var t = setTimeout(function(){ currentTime() }, 1000); /* setting timer */
-}
+  window.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        window.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        function nthFormatter(d) {
+            if (d > 3 && d < 21) return 'th';
+            switch (d % 10) {
+                case 1: return "st";
+                case 2: return "nd";
+                case 3: return "rd";
+                default: return "th";
+            }
+        }
+        function currentTime() {
+            var date = new Date();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            if (min < 10)
+                min = "0" + min;
+            var ampm = hour >= 12 ? 'pm' : 'am';
+            var dayOfWeek = window.days[date.getDay()];
+            var month = window.months[date.getMonth()];
+            var day = date.getDate();
+            day += nthFormatter(day);
 
-function updateTime(k) {
-  if (k < 10) {
-    return "0" + k;
-  }
-  else {
-    return k;
-  }
-}
+            document.getElementById("clock").innerText = dayOfWeek + ' ' + day + ' ' + month + ', ' +  hour + ':' + min + ampm;
+            /* setting timer to every 15 seconds */
+            var t = setTimeout(function () { currentTime() }, 15000); 
+        }
 
-currentTime(); /* calling currentTime() function to initiate the process */
-
+        currentTime();
 </script>
   <table cellspacing="20px">
     <!--Please note that the cellspacing attribute has been deprecated.-->
