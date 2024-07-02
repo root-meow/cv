@@ -24,6 +24,7 @@ function currentTime() {
   var min = date.getMinutes();
   var sec = date.getSeconds();
   var day = date.toISOString().split('T')[0];
+  day = updateTime(day);
   hour = updateTime(hour);
   min = updateTime(min);
   sec = updateTime(sec);
