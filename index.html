@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>root-meow's personal site</title>
+  <title>Root-meow's personal site</title>
   <!--<style>
         img {
           border-radius: 50%;
@@ -31,14 +31,14 @@
         }
         function currentTime() {
             var date = new Date();
-            var hour = date.getHours();
-            var min = date.getMinutes();
+            var hour = date.getUTCHours();
+            var min = date.getUTCMinutes();
             if (min < 10)
                 min = "0" + min;
             var ampm = hour >= 12 ? 'pm' : 'am';
-            var dayOfWeek = window.days[date.getDay()];
-            var month = window.months[date.getMonth()];
-            var day = date.getDate();
+            var dayOfWeek = window.days[date.getUTCDay()];
+            var month = window.months[date.getUTCMonth()];
+            var day = date.getUTCDate();
             day += nthFormatter(day);
 
             document.getElementById("clock").innerText = dayOfWeek + ' ' + day + ' ' + month + ', ' +  hour + ':' + min + ampm;
